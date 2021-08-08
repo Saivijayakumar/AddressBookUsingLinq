@@ -166,13 +166,36 @@ namespace AddressBookUsingLinq
                     Display();
                     return true;
                 }
-                return false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
             }
+            return false;
+        }
+        public bool DeleteContactUsingName(string FirstName)
+        {
+            try
+            {
+                AddValues();
+                var result = (from Contact in dataTable.AsEnumerable() where Contact.Field<string>("FirstName") == FirstName select Contact).FirstOrDefault();
+                if (result != null)
+                {
+                    Console.WriteLine("-------------------Before Delete-----------------------");
+                    Display();
+                    result.Delete();
+                    Console.WriteLine("-------------------After Delete-----------------------");
+                    Display();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return false;
         }
         public void Display()
         {
