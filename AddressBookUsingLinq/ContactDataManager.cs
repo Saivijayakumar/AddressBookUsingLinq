@@ -153,6 +153,27 @@ namespace AddressBookUsingLinq
                 Console.WriteLine(ex.Message);
             }
         }
+        //Edit contact using name
+        public bool EditDataTableUsingName(string FirstName, string ColumnName, string value)
+        {
+            try
+            {
+                AddValues();
+                var result = (from Contact in dataTable.AsEnumerable() where Contact.Field<string>("FirstName") == FirstName select Contact).FirstOrDefault();
+                if (result != null)
+                {
+                    result[ColumnName] = value;
+                    Display();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
         public void Display()
         {
             try
