@@ -14,7 +14,7 @@ namespace AddressBookUsingLinq
             ContactDataManager manager = new ContactDataManager();
             Console.WriteLine("-----------------------------------------------------");
             Console.WriteLine("1.Create Data and Display Data Table\n2.Edit Contact\n3.Delete Contact Using Name\n4.Retrive Base On City" +
-                "\n5.Retrive Count Base on city and state");
+                "\n5.Retrive Count Base on city and state\n6.Retrive Name Based on City in order");
             Console.WriteLine("-----------------------------------------------------");
             Console.Write("Enter Your Choice:");
             switch (Console.ReadLine())
@@ -45,6 +45,10 @@ namespace AddressBookUsingLinq
                     break;
                 case "5":
                     manager.RetrieveCountBasedOnCityandState();
+                    break;
+                case "6":
+                    Console.Write("Enter City Name:");
+                    manager.RetriveNameInorderWithCity(Console.ReadLine());
                     break;
                 default:
                     Console.WriteLine("Enter Valid Option");

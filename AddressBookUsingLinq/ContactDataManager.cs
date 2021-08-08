@@ -205,9 +205,16 @@ namespace AddressBookUsingLinq
             {
                 AddValues();
                 var result = (from Contact in dataTable.AsEnumerable() where Contact.Field<string>("City") == cityName select Contact);
-                foreach(var dtRows in result)
+                if (result.Count() > 0)
                 {
-                    Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                    foreach (var dtRows in result)
+                    {
+                        Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Returning NUll Check the input value");
                 }
             }
             catch (Exception ex)
@@ -220,10 +227,17 @@ namespace AddressBookUsingLinq
             try
             {
                 AddValues();
-                var modifiedList = (from Contact in dataTable.AsEnumerable().GroupBy(r => new { City = r["City"], StateName = r["State"] }) select Contact);
-                foreach (var i in modifiedList)
+                var result = (from Contact in dataTable.AsEnumerable().GroupBy(r => new { City = r["City"], StateName = r["State"] }) select Contact);
+                if(result.Count() > 0)
                 {
-                    Console.WriteLine($"There are {i.Count()} contact with {i.Key}");
+                    foreach (var i in result)
+                    {
+                        Console.WriteLine($"There are {i.Count()} contact with {i.Key}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Returning NUll Check the input value");
                 }
             }
             catch (Exception ex)
@@ -231,7 +245,30 @@ namespace AddressBookUsingLinq
                 Console.WriteLine(ex.Message);
             }
         }
-        
+        //Retrive names in order whith city name
+        public void RetriveNameInorderWithCity(string cityName)
+        {
+            try
+            {
+                AddValues();
+                var result = (from Contact in dataTable.AsEnumerable() orderby Contact.Field<string>("FirstName") where Contact.Field<string>("City") == cityName select Contact);
+                if (result.Count() > 0)
+                {
+                    foreach (var dtRows in result)
+                    {
+                        Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Returning NUll Check the input value");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         public void Display()
         {
             try
