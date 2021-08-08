@@ -16,5 +16,8 @@ namespace AddressBookUsingLinq
         public double phoneNumber { get; set; }
         public int zipCode { get; set; }
         public string emailId { get; set; }
+
+        public string addressBookName { get; set; }
+        public string addressBookType { get; set; }
     }
 }

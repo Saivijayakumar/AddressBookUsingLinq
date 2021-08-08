@@ -75,6 +75,20 @@ namespace AddressBookUsingLinq
                 dtColumn.ColumnName = "Zip";
                 dtColumn.AutoIncrement = false;
                 dataTable.Columns.Add(dtColumn);
+
+                //create AddressBookName
+                dtColumn = new DataColumn();
+                dtColumn.DataType = typeof(string);
+                dtColumn.ColumnName = "AddressBookName";
+                dtColumn.AutoIncrement = false;
+                dataTable.Columns.Add(dtColumn);
+
+                //create AddressBookType
+                dtColumn = new DataColumn();
+                dtColumn.DataType = typeof(string);
+                dtColumn.ColumnName = "AddressBookType";
+                dtColumn.AutoIncrement = false;
+                dataTable.Columns.Add(dtColumn);
             }
             catch(Exception ex)
             {
@@ -100,6 +114,8 @@ namespace AddressBookUsingLinq
                 contact.city = "Chennai";
                 contact.state = "TN";
                 contact.zipCode = 600002;
+                contact.addressBookName = "First";
+                contact.addressBookType = "Friend";
                 //insert these values to table
                 InsertintoDataTable(contact);
 
@@ -111,6 +127,8 @@ namespace AddressBookUsingLinq
                 contact.city = "Nellore";
                 contact.state = "Ap";
                 contact.zipCode = 88494;
+                contact.addressBookName = "First";
+                contact.addressBookType = "Friend";
                 InsertintoDataTable(contact);
 
                 contact.firstName = "vijaya";
@@ -121,6 +139,8 @@ namespace AddressBookUsingLinq
                 contact.city = "Nellore";
                 contact.state = "Ap";
                 contact.zipCode = 88494;
+                contact.addressBookName = "Second";
+                contact.addressBookType = "Family";
                 InsertintoDataTable(contact);
 
                 //Return The count of Rows Effected
@@ -146,6 +166,8 @@ namespace AddressBookUsingLinq
                 dtRow["Zip"] = contact.zipCode;
                 dtRow["PhoneNumber"] = contact.phoneNumber;
                 dtRow["Email"] = contact.emailId;
+                dtRow["AddressBookName"] = contact.addressBookName;
+                dtRow["AddressBookType"] = contact.addressBookType;
                 dataTable.Rows.Add(dtRow);
             }
             catch (Exception ex)
@@ -209,7 +231,7 @@ namespace AddressBookUsingLinq
                 {
                     foreach (var dtRows in result)
                     {
-                        Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                        Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]} | {dtRows["AddressBookName"]} | {dtRows["AddressBookType"]} |");
                     }
                 }
                 else
@@ -256,7 +278,7 @@ namespace AddressBookUsingLinq
                 {
                     foreach (var dtRows in result)
                     {
-                        Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                        Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]} | {dtRows["AddressBookName"]} | {dtRows["AddressBookType"]} |");
                     }
                 }
                 else
@@ -277,7 +299,7 @@ namespace AddressBookUsingLinq
                 Console.WriteLine("-------------------------------------------------------------------------------");
                 foreach (DataRow dtRows in dataTable.Rows)
                 {
-                    Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                    Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}| {dtRows["AddressBookName"]} | {dtRows["AddressBookType"]} |");
                 }
             }
             catch (Exception ex)
