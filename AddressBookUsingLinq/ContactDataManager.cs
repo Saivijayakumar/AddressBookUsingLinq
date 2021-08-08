@@ -291,6 +291,21 @@ namespace AddressBookUsingLinq
                 Console.WriteLine(ex.Message);
             }
         }
+        public void CountOfContactsByType()
+        {
+            AddValues();
+            var result = (from perso in dataTable.AsEnumerable().GroupBy(i => i["AddressBookType"]) select perso);
+            Console.WriteLine("----------------------");
+            foreach (var value in result)
+            {
+                Console.WriteLine("Type : "+value.Key+" Count : "+value.Count());
+                foreach (var row in value)
+                {
+                    Console.WriteLine($"{row["FirstName"]} | { row["LastName"]} | {row["Address"]} | {row["City"]} | {row["State"]} | {row["Zip"]} | {row["PhoneNumber"]} | {row["Email"]} | {row["AddressBookName"]}| {row["AddressBookType"]}\n");
+                }
+                Console.WriteLine("----------------------");
+            }
+        }
         public void Display()
         {
             try
