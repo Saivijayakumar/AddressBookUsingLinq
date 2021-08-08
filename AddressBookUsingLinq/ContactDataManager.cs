@@ -215,6 +215,23 @@ namespace AddressBookUsingLinq
                 Console.WriteLine(ex.Message);
             }
         }
+        public void RetrieveCountBasedOnCityandState()
+        {
+            try
+            {
+                AddValues();
+                var modifiedList = (from Contact in dataTable.AsEnumerable().GroupBy(r => new { City = r["City"], StateName = r["State"] }) select Contact);
+                foreach (var i in modifiedList)
+                {
+                    Console.WriteLine($"There are {i.Count()} contact with {i.Key}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
         public void Display()
         {
             try

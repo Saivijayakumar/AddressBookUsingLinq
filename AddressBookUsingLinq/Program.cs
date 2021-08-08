@@ -13,7 +13,8 @@ namespace AddressBookUsingLinq
             Console.WriteLine("Welcome to address Book System using linq");
             ContactDataManager manager = new ContactDataManager();
             Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine("1.Create Data and Display Data Table\n2.Edit Contact\n3.Delete Contact Using Name\n4.Retrive Base On City");
+            Console.WriteLine("1.Create Data and Display Data Table\n2.Edit Contact\n3.Delete Contact Using Name\n4.Retrive Base On City" +
+                "\n5.Retrive Count Base on city and state");
             Console.WriteLine("-----------------------------------------------------");
             Console.Write("Enter Your Choice:");
             switch (Console.ReadLine())
@@ -42,11 +43,15 @@ namespace AddressBookUsingLinq
                     Console.Write("Enter City Name:");
                     manager.RetriveBasedOnCity(Console.ReadLine());
                     break;
+                case "5":
+                    manager.RetrieveCountBasedOnCityandState();
+                    break;
                 default:
                     Console.WriteLine("Enter Valid Option");
                     break;
             }
             Console.ReadLine();
+            
         }
     }
 }
