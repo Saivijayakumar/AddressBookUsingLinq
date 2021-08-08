@@ -10,6 +10,7 @@ namespace AddressBookUsingLinq
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to address Book System using linq");
         }
     }
 }
