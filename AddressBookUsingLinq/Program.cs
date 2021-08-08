@@ -13,7 +13,7 @@ namespace AddressBookUsingLinq
             Console.WriteLine("Welcome to address Book System using linq");
             ContactDataManager manager = new ContactDataManager();
             Console.WriteLine("-----------------------------------------------------");
-            Console.WriteLine("1.Create Data and Display Data Table\n2.Edit Contact\n3.Delete Contact Using Name");
+            Console.WriteLine("1.Create Data and Display Data Table\n2.Edit Contact\n3.Delete Contact Using Name\n4.Retrive Base On City");
             Console.WriteLine("-----------------------------------------------------");
             Console.Write("Enter Your Choice:");
             switch (Console.ReadLine())
@@ -37,6 +37,10 @@ namespace AddressBookUsingLinq
                         Console.WriteLine("------------Deleted---------------");
                     else
                         Console.WriteLine("------------Not Deleted check the inputs---------------");
+                    break;
+                case "4":
+                    Console.Write("Enter City Name:");
+                    manager.RetriveBasedOnCity(Console.ReadLine());
                     break;
                 default:
                     Console.WriteLine("Enter Valid Option");

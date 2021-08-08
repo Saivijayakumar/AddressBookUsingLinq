@@ -174,6 +174,7 @@ namespace AddressBookUsingLinq
             }
             return false;
         }
+        //Delete contact using firstName
         public bool DeleteContactUsingName(string FirstName)
         {
             try
@@ -196,6 +197,23 @@ namespace AddressBookUsingLinq
                 return false;
             }
             return false;
+        }
+        //Show the contact Base on CityName
+        public void RetriveBasedOnCity(string cityName)
+        {
+            try
+            {
+                AddValues();
+                var result = (from Contact in dataTable.AsEnumerable() where Contact.Field<string>("City") == cityName select Contact);
+                foreach(var dtRows in result)
+                {
+                    Console.WriteLine($"| {dtRows["FirstName"]} | {dtRows["LastName"]} | {dtRows["Address"]} | {dtRows["City"]} | {dtRows["State"]} | {dtRows["Zip"]} | {dtRows["PhoneNumber"]} | {dtRows["Email"]}|");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         public void Display()
         {
